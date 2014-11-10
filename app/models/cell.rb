@@ -1,40 +1,39 @@
 class Cell < ActiveRecord::Base
-  include BaseCell
   SATIETY_REQUIRED_TO_MOVE = 2
   MAXIMUM_SATIETY = 10
-  COLOUR_MAP = {
-    10 => "#10B600",
-    9 => "#3DE800",
-    8 => "#B0FF00",
-    7 => "#E8E100",
-    6 => "#FFD800",
-    5 => "#B67D00",
-    4 => "#E88600",
-    3 => "#FF6B00",
-    2 => "#E83A00",
-    1 => "#FF1000"
-  }
 
   validates :x, :y, :satiety, :propensity_to_move, :propensity_to_reproduce, presence: true
   validates :propensity_to_reproduce, :propensity_to_move, inclusion: { in: 0..100 }
   validates :satiety, inclusion: { in: 0..MAXIMUM_SATIETY }
   validates :x, uniqueness: { scope: :y }
 
-  def colour
-    COLOUR_MAP[satiety]
+
+
+  def attempt_to_reproduce(available_mates, available_birth_places)
+    if wants_to_reproduce? && available_mates.length > 0 && available_birth_places.length > 0
+       return CreateOffspring.new(self, available_mates.sample, available_birth_places.sample).make!
+    end
   end
 
-  def able_to_reproduce?
+  def attempt_to_move(occupiable_neighbouring_squares, world)
+    if wants_to_move? && occupiable_neighbouring_squares.length > 0
+      MoveCell.new(self, occupiable_neighbouring_squares.sample, world).move
+    end
+  end
+
+  def mate
+    self.has_mated = true
+  end
+
+  def wants_to_reproduce?
     random_number = [*0..100].sample
     random_number <= propensity_to_reproduce && !has_mated 
   end
 
-  def can_be_saved?
-    true
-  end
+  private
 
-  def able_to_move?
+  def wants_to_move?
     random_number = [*0..100].sample
-    random_number <= propensity_to_reproduce
+    random_number <= propensity_to_reproduce && satiety >= SATIETY_REQUIRED_TO_MOVE
   end
 end

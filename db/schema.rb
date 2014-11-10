@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20141030001412) do
   end
 
   create_table "foods", force: true do |t|
+    t.integer  "x"
+    t.integer  "y"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
