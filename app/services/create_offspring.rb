@@ -7,7 +7,7 @@ class CreateOffspring
   end
 
   def make!
-    offspring = Cell.create!(x: @birth_place.x, y: @birth_place.y, satiety: Cell::MAXIMUM_SATIETY, propensity_to_reproduce: offspring_propensity_to_reproduce(@parent_to_inherit_from), propensity_to_move: offspring_propensity_to_move(@parent_to_inherit_from), has_mated: true)
+    offspring = Cell.create!(x: @birth_place.x, y: @birth_place.y, satiety: Cell::MAXIMUM_SATIETY, propensity_to_reproduce: offspring_propensity_to_reproduce(@parent_to_inherit_from), propensity_to_move: offspring_propensity_to_move(@parent_to_inherit_from), has_mated: true, has_moved: false)
     
     @parent_1.mate
     @parent_2.mate

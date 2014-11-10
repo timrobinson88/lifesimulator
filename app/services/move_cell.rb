@@ -21,5 +21,7 @@ class MoveCell
     @cell.x = @destination.x
     @cell.y = @destination.y
     @cell.satiety -= 2
+    @cell.has_moved = true
+    @cell.save!
   end
 end

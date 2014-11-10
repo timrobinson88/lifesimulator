@@ -8,7 +8,7 @@ describe MoveCell do
 
   describe "moving a cell on to a square containing food" do
     before do
-      Cell.create!(satiety: 4, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false)
+      Cell.create!(satiety: 4, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false, has_moved: false)
       Food.create!(x: 1, y: 0)
       world.populate
       MoveCell.new(cell, food, world).move
@@ -36,7 +36,7 @@ describe MoveCell do
 
   describe "moving a cell on to an empty square" do
     before do
-      Cell.create!(satiety: 4, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false)
+      Cell.create!(satiety: 4, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false, has_moved: false)
       Food.create!(x: 1, y: 0)
       world.populate
       MoveCell.new(cell, empty_square, world).move

@@ -7,10 +7,10 @@ describe World do
 
 
   before do 
-    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 1, y:0, has_mated: false)
-    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false)
-    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:1, has_mated: false)
-    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 1, y:1, has_mated: false)
+    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 1, y:0, has_mated: false, has_moved: false)
+    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false, has_moved: false)
+    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:1, has_mated: false, has_moved: false)
+    Cell.create!(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 1, y:1, has_mated: false, has_moved: false)
     Food.create!(x: 3, y: 3)
     Food.create!(x: 2, y: 2)
   end

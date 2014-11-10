@@ -7,6 +7,7 @@ class CreateCells < ActiveRecord::Migration
       t.integer :x
       t.integer :y
       t.boolean :has_mated
+      t.boolean :has_moved
 
       t.timestamps
     end

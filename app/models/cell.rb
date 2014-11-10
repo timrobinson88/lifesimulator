@@ -34,6 +34,6 @@ class Cell < ActiveRecord::Base
 
   def wants_to_move?
     random_number = [*0..100].sample
-    random_number <= propensity_to_reproduce && satiety >= SATIETY_REQUIRED_TO_MOVE
+    random_number <= propensity_to_move && satiety >= SATIETY_REQUIRED_TO_MOVE && !has_moved?
   end
 end

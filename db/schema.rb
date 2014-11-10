@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20141030001412) do
     t.integer  "x"
     t.integer  "y"
     t.boolean  "has_mated"
+    t.boolean  "has_moved"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
