@@ -43,7 +43,7 @@ describe MoveCell do
     end
 
     it "decreases the cells satiety by two" do
-      expect(cell.satiety).to eq(2)
+      expect(cell.satiety).to eq(3)
     end
 
     it "updates the previous location of the cell to be an empty square" do

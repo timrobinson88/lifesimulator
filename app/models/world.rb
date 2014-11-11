@@ -9,10 +9,17 @@ class World
   end
 
   def each_cell
-   
      @grid.each do |row|
       row.each do |square|
         yield square if square.respond_to?(:wants_to_reproduce?)
+      end
+    end
+  end
+
+  def each_empty_square
+    @grid.each do |row|
+      row.each do |square|
+        yield square if square.class == EmptySquare
       end
     end
   end

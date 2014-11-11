@@ -1,21 +1,22 @@
 require "spec_helper"
 
 describe CreateOffspring do
-  let(:cell_1) { Cell.new(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 1, y:0, has_mated: false) }
-  let(:cell_2) { Cell.new(satiety: 10, propensity_to_move: 100, propensity_to_reproduce: 100, x: 0, y:0, has_mated: false) }
+  let(:cell_1) { Cell.new(satiety: 10, propensity_to_move: 68, propensity_to_reproduce: 50, x: 1, y:0, has_mated: false) }
+  let(:cell_2) { Cell.new(satiety: 10, propensity_to_move: 74, propensity_to_reproduce: 40, x: 0, y:0, has_mated: false) }
   let(:birth_place) { EmptySquare.new(0, 1) }
   let(:create_offspring) { CreateOffspring.new(cell_1, cell_2, birth_place) }
 
   describe "Making a new offspring" do
-    srand 1234
+    before { srand 767 }
+
     let(:offspring) { create_offspring.make! }
 
     it "assigns the offspring a propensity to move that inherits from a parent with a genetic variation applied" do
-      expect(offspring.propensity_to_move).to eq(95)
+      expect(offspring.propensity_to_move).to eq(64)
     end
 
     it "assigns the offspring a propensity to reproduce that inherits from a parent with a genetic variation applied" do
-      expect(offspring.propensity_to_reproduce).to eq(99)
+      expect(offspring.propensity_to_reproduce).to eq(43)
     end
 
     it "produces offspring with maximum satiety" do

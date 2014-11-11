@@ -20,7 +20,7 @@ class MoveCell
   def update_cell
     @cell.x = @destination.x
     @cell.y = @destination.y
-    @cell.satiety -= 2
+    @cell.satiety -= 1
     @cell.has_moved = true
     @cell.save!
   end

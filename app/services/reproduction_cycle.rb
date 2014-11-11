@@ -1,7 +1,9 @@
 class ReproductionCycle
+  def initialize(world)
+    @world = world
+  end
+  
   def run
-    @world = World.new(3,3)
-    @world.populate
     @world.each_cell do |cell|
       offspring = cell.attempt_to_reproduce(cells_available_to_mate_with(cell), occupiable_neighbouring_squares(cell))
    

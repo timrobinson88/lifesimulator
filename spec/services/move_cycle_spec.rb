@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe MoveCycle do
-  let(:move_cycle) { MoveCycle.new }
+  let(:world) { World.new(3, 3) }
+  let(:move_cycle) { MoveCycle.new(world) }
   let(:first_cell) { Cell.first }
   let(:second_cell) { Cell.find(2) }
   let(:third_cell) { Cell.find(3) }
@@ -17,7 +18,8 @@ describe MoveCycle do
   describe "running the move cycle" do
     before do
       srand 12345
-      move_cycle.run
+      world.populate
+      MoveCycle.new(world).run
     end
 
     it "should move all of the eligible cells to new locations" do
